@@ -15,14 +15,6 @@
     "scripting",
     "activeTab"
   ],
-  "content_scripts": [
-    {
-      "matches": [
-        "https://*/*",
-        "http://*/*"
-      ]
-    }
-  ],
   "host_permissions": [
     "<all_urls>"
   ],
