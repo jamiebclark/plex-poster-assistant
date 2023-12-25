@@ -39,6 +39,13 @@ export default class PlexApi {
   }
 
   public async getQuery(query: string) {
+    const results = await Promise.all([
+      this.getLibraryItemsQuery(query),
+      this.getCollectionsQuery(query)
+    ])
+    return results.reduce((acc, result) => acc.concat(result), [])
+  }
+  public async getLibraryItemsQuery(query: string) {
     const results = await this.api().get<PlexPayload.SearchResultContainer>(
       `/library/search`,
       {
@@ -48,6 +55,33 @@ export default class PlexApi {
     return results?.data?.MediaContainer?.SearchResult?.reduce((acc, result) => {
       return result.Metadata ? acc.concat([result.Metadata]) : acc
     }, [] as PlexPayload.Metadata[]);
+  }
+
+  /**
+   * Queries all libraries for collections
+   * @param query The query text
+   * @returns An array of metadata
+   */
+  public async getCollectionsQuery(query: string) {
+    const libraries = await this.getLibraries()
+    const results = await Promise.all(libraries.map(async ({ key }) => this.getLibraryCollectionsQuery(key, query)))
+    return results.reduce((acc, result) => acc.concat(result), [])
+  }
+
+  /**
+   * Queries a specific library for collections
+   * @param collectionId The Collection ID
+   * @param query The query text
+   * @returns An array of metadata
+   */
+  public async getLibraryCollectionsQuery(libraryId: string, query: string) {
+    const results = await this.api().get<MetadataPayload>(`/library/sections/${libraryId}/all`, {
+      params: {
+        title: query,
+        type: 18
+      }
+    })
+    return results?.data?.MediaContainer?.Metadata ?? []
   }
 
   public getThumbSrc(metadata: PlexPayload.Metadata) {
