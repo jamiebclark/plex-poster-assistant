@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="container mx-auto bg-slate-100">
-      <header className="flex justify-between items-center mb-4 bg-slate-500 p-2">
+      <header className="flex justify-between items-center mb-2 bg-slate-500 p-2">
         <div className="text-lg font-bold">Plex Poster Helper</div>
         <div>
           <AppButton
@@ -42,7 +42,7 @@ function App() {
         </div>
       </header>
 
-      <div className="p-4">
+      <div className="px-1">
         {hasAllSettings() ? <PostersHelper api={plexApi} /> : ""}
       </div>
 

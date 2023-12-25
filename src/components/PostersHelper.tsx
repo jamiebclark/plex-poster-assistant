@@ -57,7 +57,10 @@ export default function PostersHelper({ api }: PostersHelperProps) {
       <div className="space-y-4 mb-4">
         {posters.map((poster, key) => {
           return (
-            <div className="flex items-start w-full" key={poster.uuid ?? key}>
+            <div
+              className="flex items-start w-full space-x-1"
+              key={poster.uuid ?? key}
+            >
               <PosterHelper
                 className="flex-grow"
                 onPosterChange={(changedPoster) => {
@@ -81,7 +84,7 @@ export default function PostersHelper({ api }: PostersHelperProps) {
           );
         })}
       </div>
-      <footer className="flex justify-center">
+      <footer className="flex justify-center p-2">
         <AppButton
           className="flex items-center space-x-2"
           onClick={() => handleAddPoster()}
