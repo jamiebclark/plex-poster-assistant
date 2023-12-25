@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaPlus, FaTrash } from "react-icons/fa6";
+import { FaPlus, FaX } from "react-icons/fa6";
 import { v4 as uuid } from "uuid";
 import loadTestData from "../data/testData";
 import PlexApi from "../lib/PlexApi";
@@ -57,7 +57,7 @@ export default function PostersHelper({ api }: PostersHelperProps) {
       <div className="space-y-4 mb-4">
         {posters.map((poster, key) => {
           return (
-            <div className="flex w-full" key={poster.uuid ?? key}>
+            <div className="flex items-start w-full" key={poster.uuid ?? key}>
               <PosterHelper
                 className="flex-grow"
                 onPosterChange={(changedPoster) => {
@@ -71,11 +71,11 @@ export default function PostersHelper({ api }: PostersHelperProps) {
                 api={api}
               />
               <AppButton
-                className="flex-grow-0"
+                className="flex-grow-0 w-8 h-8 rounded-full text-center"
                 onClick={() => handleRemovePoster(key)}
                 title="Remove Poster Row"
               >
-                <FaTrash title="Remove Poster" />
+                <FaX size={12} className="mx-auto" title="Remove Poster" />
               </AppButton>
             </div>
           );
@@ -88,7 +88,7 @@ export default function PostersHelper({ api }: PostersHelperProps) {
           title="Add a Poster Row"
         >
           <FaPlus />
-          <span>Add</span>
+          <span>Add Entry</span>
         </AppButton>
       </footer>
     </div>

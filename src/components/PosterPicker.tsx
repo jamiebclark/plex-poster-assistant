@@ -30,7 +30,7 @@ export default function PosterPicker({
   }, [poster, onChange]);
 
   return (
-    <div className={classNames(className, "flex items-center space-x-1")}>
+    <div className={classNames(className, "flex items-start space-x-1")}>
       <div className="w-16 flex-shrink-0">
         {poster.thumb ? (
           <img className="w-full border" src={poster.thumb} alt="Thumbnail" />

@@ -110,8 +110,8 @@ export default function PosterHelper({
           </div>
         </div>
       ) : (
-        <div className={classNames("p-4 flex space-x-1")}>
-          <div className="flex-grow">
+        <div className={classNames("flex space-x-1")}>
+          <div className="p-4 flex-grow">
             {initialQueryText ? (
               <h3 className="font-semibold text-sm opacity-50">
                 {initialQueryText}
@@ -140,9 +140,9 @@ export default function PosterHelper({
             </div>
           </div>
 
-          <div className="flex-col flex justify-center px-4">
+          <div className="flex-col flex justify-center ">
             <AppButton
-              className="w-16 h-16 rounded-full text-center"
+              className="text-center h-full px-4"
               onClick={() => handleSubmit()}
               disabled={!enabled}
               title="Update Poster"
