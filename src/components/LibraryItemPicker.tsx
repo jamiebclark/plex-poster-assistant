@@ -29,22 +29,20 @@ export default function LibraryItemPicker({
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [inputId] = useState<string>(uuid());
-  const [searchCount, setSearchCount] = useState<number>(0);
+  const [hasTyped, setHasTyped] = useState<boolean>(false);
 
   const prevQueryText = usePrevious(queryText);
 
   useEffect(() => {
     const timeoutId = setTimeout(async () => {
-      const firstSearch = searchCount === 0;
-      if (!queryText || (queryText === prevQueryText && !firstSearch)) {
+      if (!queryText || (queryText === prevQueryText && hasTyped)) {
         return;
       }
       setLoading(true);
       try {
         const result = await api.getQuery(queryText);
         setLoading(false);
-        setSearchCount((p) => p + 1);
-        if (firstSearch && result?.length > 0) {
+        if (!hasTyped && result?.length > 0) {
           setSelected(result[0]);
         }
         setSearchResults(result ?? []);
@@ -56,7 +54,7 @@ export default function LibraryItemPicker({
       }
     }, 500);
     return () => clearTimeout(timeoutId);
-  }, [queryText, searchCount, prevQueryText, api, onError]);
+  }, [queryText, hasTyped, prevQueryText, api, onError]);
 
   useEffect(() => {
     if (isFocused) {
@@ -117,6 +115,7 @@ export default function LibraryItemPicker({
             value={queryText}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
+            onKeyDown={() => setHasTyped(true)}
           />
           <div
             className={classNames(
