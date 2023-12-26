@@ -31,6 +31,13 @@ This will generate the production build of the project in the `/build/` director
 Clicking the Chrome Extension button will display a window that will allow a user to enter an image URL. The user can then search through their Plex library to find the corresponding item, and then set the poster art.
 ![Plex Poster Assistant screenshot](./screenshots//screen01.png)
 
+### Compatible Sites
+The Poster Assistant should be able to detect posters from the following sites:
+- [The Movie DB](https://www.themoviedb.org/)
+- [IMDB](https://imdb.com)
+- [The Poster DB](https://theposterdb.com)
+- [Fanart.tv](https://fanart.tv)
+
 ### Necessary Data
 #### Local Plex URL
 You'll need to provide the local URL of your Plex server. This will include the protocol and the ports. Something like `http://192.168.0.1:32400`
