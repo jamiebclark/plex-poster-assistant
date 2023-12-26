@@ -20,6 +20,7 @@ export default function Settings({ baseUrl, token, onClose }: SettingsProps) {
         onChange={(e) => baseUrl.handleChange(e)}
         placeholder="http://192.168.X.X:32400"
         value={baseUrl.value}
+        type="url"
       />
       <TextInput
         inputClassName="block w-full"

@@ -10,7 +10,9 @@ type TextInputProps = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   value?: string;
+  type?: string;
 };
+
 export default function TextInput({
   className,
   id,
@@ -19,9 +21,11 @@ export default function TextInput({
   labelClassName,
   onChange,
   placeholder,
+  type: customType,
   value,
 }: TextInputProps) {
   const inputId = id ?? uuid();
+  const type = customType ?? "text";
 
   return (
     <div className={classNames(className)}>
@@ -38,7 +42,7 @@ export default function TextInput({
         )}
         onChange={onChange}
         value={value}
-        type="text"
+        type={type}
         placeholder={placeholder}
       />
     </div>

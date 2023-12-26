@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { useEffect, useState } from "react";
-import { FaDownload, FaUpload } from "react-icons/fa6";
+import { FaChevronRight, FaUpload } from "react-icons/fa6";
 import { PlexPayload } from "../../@types/plex-payload";
 import PlexApi from "../lib/PlexApi";
 import { Poster, getPoster } from "../lib/loadPostersFromPage";
@@ -110,7 +110,7 @@ export default function PosterHelper({
           </div>
         </div>
       ) : (
-        <div className={classNames("flex space-x-1")}>
+        <div className={classNames("flex  space-x-1")}>
           <div className="p-4 flex-grow">
             {initialQueryText ? (
               <h3 className="font-semibold text-sm opacity-50">
@@ -119,17 +119,14 @@ export default function PosterHelper({
             ) : (
               ""
             )}
-            <div className="flex space-x-4">
+            <div className="flex items-center space-x-1">
               <div className="flex-grow">
-                <h4 className="font-bold text-sm flex items-center space-x-1">
-                  <FaDownload />
-                  <span>Poster Input</span>
-                </h4>
                 <PosterPicker
                   onChange={(p) => setPoster(p)}
                   initialPoster={poster}
                 />
               </div>
+              <FaChevronRight className="scale-x-75 opacity-25" size={45} />
               <div className="w-[40%]">
                 <LibraryItemPicker
                   onSelect={(result) => setLibraryItem(result)}
@@ -146,6 +143,7 @@ export default function PosterHelper({
               onClick={() => handleSubmit()}
               disabled={!enabled}
               title="Update Poster"
+              type={enabled ? "primary" : "default"}
             >
               <FaUpload className="mx-auto" title="Update Poster" />
             </AppButton>
