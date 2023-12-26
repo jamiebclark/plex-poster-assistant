@@ -129,13 +129,17 @@ export default function PosterHelper({
               <div className="self-center">
                 <FaChevronRight className="scale-x-75 opacity-25" size={45} />
               </div>
-              <div className="w-[40%]">
-                <LibraryItemPicker
-                  onSelect={(result) => setLibraryItem(result)}
-                  api={api}
-                  initialQueryText={initialQueryText}
-                />
-              </div>
+              {poster.url ? (
+                <div className="w-[40%]">
+                  <LibraryItemPicker
+                    onSelect={(result) => setLibraryItem(result)}
+                    api={api}
+                    initialQueryText={initialQueryText}
+                  />
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
 

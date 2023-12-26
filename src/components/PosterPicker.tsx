@@ -42,13 +42,13 @@ export default function PosterPicker({
         <span>Poster URL</span>
       </label>
       <div className={classNames("flex items-start space-x-1")}>
-        <div className="w-16 flex-shrink-0">
-          {poster.thumb ? (
+        {poster.thumb ? (
+          <div className="w-16 flex-shrink-0">
             <img className="w-full border" src={poster.thumb} alt="Thumbnail" />
-          ) : (
-            ""
-          )}
-        </div>
+          </div>
+        ) : (
+          ""
+        )}
         <input
           className="border rounded p-4 w-full font-mono text-sm"
           type="url"
