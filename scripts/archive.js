@@ -16,7 +16,7 @@ const manifestFile = fs.readFileSync(
   "utf-8"
 );
 const manifest = JSON.parse(manifestFile);
-const outputName = `archive-${manifest.version}.zip`;
+const outputName = `build-${manifest.version}.zip`;
 const outputFile = path.join(OUTPUT_DIR, outputName);
 const archive = archiver("zip", { zlib: { level: 9 } });
 const output = fs.createWriteStream(outputFile);
