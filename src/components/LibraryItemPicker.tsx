@@ -131,7 +131,11 @@ export default function LibraryItemPicker({
                     key={key}
                     onClick={() => handleSetSelected(result)}
                   >
-                    <LibraryItemView api={api} metadata={result} />
+                    <LibraryItemView
+                      imgSize="small"
+                      api={api}
+                      metadata={result}
+                    />
                   </button>
                 );
               })

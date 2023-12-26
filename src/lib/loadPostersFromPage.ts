@@ -93,6 +93,79 @@ export default async function loadPostersFromPage() {
           }, [] as Poster[])
         }
       },
+      {
+        title: 'IMDB List',
+        match: /imdb.com\/list\//,
+        execute() {
+          const posters = document.querySelectorAll('img[data-tconst]')
+          return Array.from(posters).reduce((acc, poster) => {
+            const url = poster.getAttribute('src') ?? undefined
+            const title = poster.getAttribute('alt') ?? undefined
+            const thumb = url
+            return acc.concat([{ title, thumb, url }])
+          }, [] as Poster[])
+        }
+      },
+
+      {
+        title: 'IMDB Page',
+        match: /imdb.com\/title\//,
+        execute() {
+          const posterElement = document.querySelector('.ipc-image')
+          const titleElement = document.querySelector('[data-testid="hero__primary-text"]')
+          if (!posterElement) {
+            return []
+          }
+          const title = titleElement?.innerHTML ?? undefined
+          const url = posterElement.getAttribute('src')
+          return [{
+            title,
+            url,
+            thumb: url
+          }] as Poster[]
+        }
+      },
+
+      {
+        title: 'Fanart.TV',
+        match: /fanart.tv\/movie\//,
+        execute() {
+          const posters = document.querySelectorAll('[rel="movieposter"]')
+          const titleElement = document.querySelector('title')
+          const title = titleElement?.innerText.split(' | ')[0]
+
+          return Array.from(posters).map((poster) => {
+            const url = poster.getAttribute('href') ?? undefined;
+            return {
+              title,
+              url,
+              thumb: url,
+            }
+          })
+        },
+      },
+
+      {
+        title: 'TMDB',
+        match: /themoviedb.org/,
+        execute() {
+          const posterImgs = document.querySelectorAll('img.poster[src*="/t/p/"]')
+          const RE = /(\/t\/p\/)([^/]+)\//
+          const { host, protocol } = document.location;
+          const fullHost = `${protocol}//${host}`
+
+          return Array.from(posterImgs).map((posterImg) => {
+            const originalUrl = posterImg.getAttribute('src') ?? '';
+            const url = new URL(originalUrl.replace(RE, '$1original/'), fullHost).toString()
+            const title = posterImg.getAttribute('alt') ?? undefined
+            return {
+              title,
+              url,
+              thumb: url,
+            }
+          })
+        },
+      }
     ];
 
     const config = pageConfigs.find((config) => window.location.href.match(config.match))

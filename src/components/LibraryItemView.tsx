@@ -6,12 +6,23 @@ type LibraryItemViewProps = {
   metadata: PlexPayload.Metadata;
   api: PlexApi;
   className?: string;
+  imgSize?: keyof typeof sizeClasses;
 };
+
+const sizeClasses = {
+  default: "w-16",
+  small: "w-8",
+  large: "w-32",
+};
+
 export default function LibraryItemView({
   metadata,
   api,
   className,
+  imgSize: customImgSize,
 }: LibraryItemViewProps) {
+  const imgSize = customImgSize ?? "default";
+  const imgClass = () => (imgSize ? sizeClasses[imgSize] : null);
   return (
     <div
       className={classNames(
@@ -20,7 +31,7 @@ export default function LibraryItemView({
       )}
     >
       <img
-        className="w-16 flex-shrink-0"
+        className={classNames(imgClass(), "flex-shrink-0")}
         alt={metadata?.title ?? "Preview image"}
         src={api.getThumbSrc(metadata)}
       />

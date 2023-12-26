@@ -1,5 +1,7 @@
+import { FaQuestion } from "react-icons/fa6";
 import PersistInput from "../lib/PersistInput";
 import AppButton from "./AppButton";
+import Link from "./Link";
 import TextInput from "./TextInput";
 type SettingsProps = {
   baseUrl: PersistInput;
@@ -22,14 +24,24 @@ export default function Settings({ baseUrl, token, onClose }: SettingsProps) {
         value={baseUrl.value}
         type="url"
       />
-      <TextInput
-        inputClassName="block w-full"
-        label="Plex Token"
-        labelClassName="block"
-        onChange={(e) => token.handleChange(e)}
-        placeholder="Plex Token"
-        value={token.value}
-      />
+      <div>
+        <TextInput
+          inputClassName="block w-full"
+          label="Plex Token"
+          labelClassName="block"
+          onChange={(e) => token.handleChange(e)}
+          placeholder="Plex Token"
+          value={token.value}
+        />
+        <Link
+          href="https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/"
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center text-sm justify-end"
+        >
+          <FaQuestion className="mr-1" /> Finding your Plex Token
+        </Link>
+      </div>
 
       <footer>
         {hasAllSettings() ? <AppButton onClick={onClose}>Done</AppButton> : ""}

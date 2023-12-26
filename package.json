@@ -21,10 +21,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "react:build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "npm-watch"
+    "archive": "node ./scripts/archive.js",
+    "dev": "npm-watch",
+    "build": "yarn react:build && yarn archive"
   },
   "eslintConfig": {
     "extends": [
@@ -47,6 +49,7 @@
   "devDependencies": {
     "@types/chrome": "^0.0.254",
     "@types/uuid": "^9.0.7",
+    "archiver": "^6.0.1",
     "classnames": "^2.3.2",
     "npm-watch": "^0.11.0",
     "tailwindcss": "^3.4.0"

@@ -18,6 +18,7 @@ type PostersHelperProps = {
 
 export default function PostersHelper({ api }: PostersHelperProps) {
   const [posters, setPosters] = useState<Poster[]>([{}]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   function handleAddPoster(poster?: Poster) {
     setPosters([...posters, getPoster(poster)]);
@@ -43,8 +44,10 @@ export default function PostersHelper({ api }: PostersHelperProps) {
   }, [posters]);
 
   useEffect(() => {
+    setIsLoading(true);
     loadPostersFromPage().then((results) => {
       results?.forEach((poster) => setPosters((p) => [...p, poster]));
+      setIsLoading(false);
     });
 
     if (USE_TEST_DATA) {
@@ -53,7 +56,14 @@ export default function PostersHelper({ api }: PostersHelperProps) {
   }, []);
 
   return (
-    <div>
+    <div className="relative">
+      {isLoading ? (
+        <div className="absolute flex inset-0 bg-white bg-opacity-50 z-50 items-center justify-center">
+          <span className="font-bold animate-pulse">Checking Page</span>
+        </div>
+      ) : (
+        ""
+      )}
       <div className="space-y-4 mb-4">
         {posters.map((poster, key) => {
           return (
