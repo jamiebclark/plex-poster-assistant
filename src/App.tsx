@@ -29,14 +29,14 @@ function App() {
 
   return (
     <div className="bg-slate-100 pt-16">
-      <header className="fixed z-50 top-0 inset-x-0 flex justify-between items-center  bg-slate-500 p-2">
-        <div className="text-lg font-bold flex items-center space-x-2">
+      <header className="fixed z-50 top-0 inset-x-0 flex justify-between items-center  bg-slate-700 p-2">
+        <div className="text-lg text-white font-bold flex items-center space-x-2">
           <img
             src="./favicon-32x32.png"
             className="mr-2"
-            alt="Plex Poster Helper Logo"
+            alt="Plex Poster Assistant Logo"
           />{" "}
-          Plex Poster Helper
+          Plex Poster Assistant
         </div>
         <div>
           <AppButton
