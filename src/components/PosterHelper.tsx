@@ -119,14 +119,16 @@ export default function PosterHelper({
             ) : (
               ""
             )}
-            <div className="flex items-center space-x-1">
+            <div className="flex space-x-1">
               <div className="flex-grow">
                 <PosterPicker
                   onChange={(p) => setPoster(p)}
                   initialPoster={poster}
                 />
               </div>
-              <FaChevronRight className="scale-x-75 opacity-25" size={45} />
+              <div className="self-center">
+                <FaChevronRight className="scale-x-75 opacity-25" size={45} />
+              </div>
               <div className="w-[40%]">
                 <LibraryItemPicker
                   onSelect={(result) => setLibraryItem(result)}
