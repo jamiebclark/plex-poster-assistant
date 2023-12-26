@@ -21,6 +21,11 @@ yarn build
 ```
 This will generate the production build of the project in the `/build/` directory. It will also build an archive ZIP file in `/archives/`
 
+#### Testing
+1. [Follow instructions for installing a Chrome extension locally](https://medium.com/@aabroo.jalil/how-to-test-a-chrome-extension-locally-step-by-step-guide-852e4622d4c7)
+2. Use the `/build` folder when loading in Chrome
+
+
 ## Usage
 Clicking the Chrome Extension button will display a window that will allow a user to enter an image URL. The user can then search through their Plex library to find the corresponding item, and then set the poster art.
 ![Plex Poster Assistant screenshot](./screenshots//screen01.png)
