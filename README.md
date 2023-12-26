@@ -13,6 +13,7 @@ The script can be run locally
 ```
 yarn start
 ```
+You can view the output in your browser by navigating to `localhost:3000`
 
 ### Building
 Building and packaging the project for use in the Chrome Store
