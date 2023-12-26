@@ -28,9 +28,16 @@ function App() {
   }, [baseUrl.state, token.state]);
 
   return (
-    <div className="container mx-auto bg-slate-100">
-      <header className="flex justify-between items-center mb-2 bg-slate-500 p-2">
-        <div className="text-lg font-bold">Plex Poster Helper</div>
+    <div className="bg-slate-100 pt-16">
+      <header className="fixed z-50 top-0 inset-x-0 flex justify-between items-center  bg-slate-500 p-2">
+        <div className="text-lg font-bold flex items-center space-x-2">
+          <img
+            src="./favicon-32x32.png"
+            className="mr-2"
+            alt="Plex Poster Helper Logo"
+          />{" "}
+          Plex Poster Helper
+        </div>
         <div>
           <AppButton
             onClick={() => setShowSettings(!showSettings)}
@@ -49,7 +56,7 @@ function App() {
       <div
         className={classNames(
           showSettings ? "" : "opacity-0 pointer-events-none",
-          "absolute inset-0 flex justify-center items-center bg-white bg-opacity-75 z-50"
+          "absolute min-h-[400px] inset-0 flex justify-center items-center bg-white bg-opacity-75 z-50"
         )}
       >
         <div className="border rounded p-4 bg-white min-w-[300px]">
