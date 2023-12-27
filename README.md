@@ -9,7 +9,7 @@ This can be run locally can be installed using NPM or Yarn
 yarn
 ```
 ### Local Development
-The script can be run locally
+Developer mode can be run locally
 ```
 yarn start
 ```
@@ -20,7 +20,7 @@ Building and packaging the project for use in the Chrome Store
 ```
 yarn build
 ```
-This will generate the production build of the project in the `/build/` directory. It will also build an archive ZIP file in `/archives/`
+This will generate the production build of the project in the `/build/` directory. It will also build a ZIP file in `/archives/`
 
 #### Testing
 1. [Follow instructions for installing a Chrome extension locally](https://medium.com/@aabroo.jalil/how-to-test-a-chrome-extension-locally-step-by-step-guide-852e4622d4c7)
@@ -28,18 +28,4 @@ This will generate the production build of the project in the `/build/` director
 
 
 ## Usage
-Clicking the Chrome Extension button will display a window that will allow a user to enter an image URL. The user can then search through their Plex library to find the corresponding item, and then set the poster art.
-![Plex Poster Assistant screenshot](./screenshots//screen01.png)
-
-### Compatible Sites
-The Poster Assistant should be able to detect posters from the following sites:
-- [The Movie DB](https://www.themoviedb.org/)
-- [IMDB](https://imdb.com)
-- [The Poster DB](https://theposterdb.com)
-- [Fanart.tv](https://fanart.tv)
-
-### Necessary Data
-#### Local Plex URL
-You'll need to provide the local URL of your Plex server. This will include the protocol and the ports. Something like `http://192.168.0.1:32400`
-#### Plex Token
-You'll also need the Plex Token. Plex explains how you can retreive that [here](https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/)
+[How to use the Plex Poster Assistant](https://github.com/jamiebclark/plex-poster-assistant/wiki/How-to-Use-The-Plex-Poster-Assistant)
