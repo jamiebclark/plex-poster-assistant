@@ -59,7 +59,7 @@ function App() {
           "absolute min-h-[400px] inset-0 flex justify-center items-center bg-white bg-opacity-75 z-50"
         )}
       >
-        <div className="border rounded p-4 bg-white min-w-[300px]">
+        <div className="border rounded p-4 max-w-[400px] bg-white min-w-[300px]">
           <Settings
             baseUrl={baseUrl}
             token={token}
