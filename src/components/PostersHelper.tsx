@@ -45,10 +45,15 @@ export default function PostersHelper({ api }: PostersHelperProps) {
 
   useEffect(() => {
     setIsLoading(true);
-    loadPostersFromPage().then((results) => {
-      results?.forEach((poster) => setPosters((p) => [...p, poster]));
-      setIsLoading(false);
-    });
+    loadPostersFromPage()
+      .then((results) => {
+        results?.forEach((poster) => setPosters((p) => [...p, poster]));
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error("Could not load anything from the page");
+        console.error(err);
+      });
 
     if (USE_TEST_DATA) {
       loadTestData("thePosterDb", setPosters);
