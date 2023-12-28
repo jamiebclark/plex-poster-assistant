@@ -11,12 +11,7 @@ if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
-const manifestFile = fs.readFileSync(
-  path.join(INPUT_DIR, "manifest.json"),
-  "utf-8"
-);
-const manifest = JSON.parse(manifestFile);
-const outputName = `build-${manifest.version}.zip`;
+const outputName = `release.zip`;
 const outputFile = path.join(OUTPUT_DIR, outputName);
 const archive = archiver("zip", { zlib: { level: 9 } });
 const output = fs.createWriteStream(outputFile);

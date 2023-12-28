@@ -1,6 +1,6 @@
 {
   "name": "plex-poster-chrome-extension",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -21,12 +21,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "react:build": "react-scripts build",
+    "build:react": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "archive": "node ./scripts/archive.js",
+    "build:release": "node ./scripts/buildRelease.js",
     "dev": "npm-watch",
-    "build": "yarn react:build && yarn archive"
+    "build": "yarn build:react && yarn build:release"
   },
   "eslintConfig": {
     "extends": [
