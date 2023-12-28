@@ -5,7 +5,7 @@ const path = require("path");
 // Setup
 const ROOT = path.resolve("");
 const INPUT_DIR = path.join(ROOT, "build");
-const OUTPUT_DIR = path.join(ROOT, "archives");
+const OUTPUT_DIR = path.join(ROOT, "artifacts");
 
 if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
