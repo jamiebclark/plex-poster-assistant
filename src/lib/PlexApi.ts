@@ -52,9 +52,36 @@ export default class PlexApi {
         params: { query },
       }
     );
-    return results?.data?.MediaContainer?.SearchResult?.reduce((acc, result) => {
-      return result.Metadata ? acc.concat([result.Metadata]) : acc
-    }, [] as PlexPayload.Metadata[]);
+
+    const output: PlexPayload.Metadata[] = []
+
+    const searchResults = results?.data?.MediaContainer?.SearchResult
+    for (let result of searchResults) {
+      if (result.Metadata) {
+        output.push(result.Metadata)
+        if (result.Metadata.childCount) {
+          const children = await this.getLibraryChildItems(result.Metadata.key)
+          children.forEach((child) => {
+            output.push(child)
+          })
+        }
+      }
+    }
+    return output;
+  }
+
+  public async getLibraryChildItems(parentKey: string): Promise<PlexPayload.Metadata[]> {
+    const results = await this.api().get<PlexPayload.LibraryItemChildrenContainer>(parentKey);
+    const metadata = results?.data?.MediaContainer?.Metadata as PlexPayload.Metadata[]
+    return metadata.map((child) => {
+      if (child.parentTitle) {
+        return {
+          ...child,
+          title: `${child.parentTitle}: ${child.title}`
+        }
+      }
+      return child
+    })
   }
 
   /**

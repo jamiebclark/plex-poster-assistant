@@ -15,6 +15,13 @@ export namespace PlexPayload {
     };
   }
 
+  export interface LibraryItemChildrenContainer {
+    MediaContainer: {
+      Metadata: Metadata[];
+      size: number;
+    };
+  }
+
   export interface SearchResult {
     Metadata?: Metadata;
     Directory?: DirectoryTag;
@@ -48,6 +55,7 @@ export namespace PlexPayload {
     type: string;
     thumb: string;
     selected?: boolean
+    parentTitle?: string
   }
 
   export interface MovieMetadata extends BaseMetadata {
