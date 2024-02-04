@@ -165,6 +165,51 @@ export default async function loadPostersFromPage() {
             }
           })
         },
+      },
+
+      {
+        title: 'Reddit New',
+        match: /www.reddit.com/,
+        execute() {
+
+          const posts = document.querySelectorAll('shreddit-post')
+          const results: Poster[] = [];
+
+          Array.from(posts).forEach((post) => {
+            const title = post.getAttribute('post-title') ?? undefined
+            const carouselImages = post.querySelectorAll('gallery-carousel li img')
+            if (carouselImages) {
+              Array.from(carouselImages).forEach((img) => {
+                const url = img.getAttribute('src') ?? img.getAttribute('data-lazy-src') ?? undefined
+                results.push({
+                  title,
+                  url,
+                  thumb: url,
+                })
+
+              })
+            }
+          })
+
+          return results;
+        }
+      },
+
+      {
+        title: 'Mediux',
+        match: /mediux.pro\/sets/,
+        execute() {
+          const results: Poster[] = [];
+          const posters = document.querySelectorAll('img[alt="Show Poster"]')
+
+          const { host, protocol } = document.location;
+          const fullHost = `${protocol}//${host}`
+          Array.from(posters).forEach((img) => {
+            const url = new URL(img.getAttribute('src') ?? '', fullHost).toString()
+            results.push({ url })
+          })
+          return results;
+        }
       }
     ];
 

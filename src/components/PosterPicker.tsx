@@ -42,9 +42,13 @@ export default function PosterPicker({
         <span>Poster URL</span>
       </label>
       <div className={classNames("flex items-start space-x-1")}>
-        {poster.thumb ? (
+        {poster.thumb || poster.url ? (
           <div className="w-16 flex-shrink-0">
-            <img className="w-full border" src={poster.thumb} alt="Thumbnail" />
+            <img
+              className="w-full border"
+              src={poster.thumb || poster.url}
+              alt="Thumbnail"
+            />
           </div>
         ) : (
           ""
