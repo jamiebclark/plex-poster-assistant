@@ -52,10 +52,11 @@ export namespace PlexPayload {
     librarySectionTitle: string;
     ratingKey: string;
     title: string;
+    parentTitle?: string;
+    grandparentTitle?: string;
     type: string;
     thumb: string;
     selected?: boolean
-    parentTitle?: string
   }
 
   export interface MovieMetadata extends BaseMetadata {

@@ -23,6 +23,14 @@ export default function LibraryItemView({
 }: LibraryItemViewProps) {
   const imgSize = customImgSize ?? "default";
   const imgClass = () => (imgSize ? sizeClasses[imgSize] : null);
+
+  const subtitle = [
+    metadata.grandparentTitle,
+    metadata.parentTitle,
+    metadata?.type,
+  ]
+    .filter((t) => t)
+    .join(" : ");
   return (
     <div
       className={classNames(
@@ -36,9 +44,9 @@ export default function LibraryItemView({
         src={api.getThumbSrc(metadata)}
       />
       <div>
-        <span className="block font-semibold text-sm">{metadata?.title}</span>
+        <span className="block font-semibold text-sm">{metadata.title}</span>
         <span className="block font-semibold text-xs opacity-50">
-          {metadata?.type}
+          {subtitle}
         </span>
       </div>
     </div>
